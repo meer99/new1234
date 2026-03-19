@@ -42,7 +42,7 @@ param subnetName string
 param sqlServerPrivateEndPoint string
 
 @description('Specifies the name of private end point nic name')
-param sqlServerPENicName string
+param  privateDnsZoneSQLName string
 
 @description('Specifies the tags for resources')
 param commonParams object = loadJsonContent('../variables/parameters.json')[env]
@@ -60,9 +60,8 @@ resource privateEndpointSubnet 'Microsoft.Network/virtualNetworks/subnets@2021-0
 }
 
 
-resource privateDnsZonesql 'Microsoft.Network/privateDnsZones@2020-06-01' existing = { 
-  #disable-next-line no-hardcoded-env-urls
-  name: 'privatelink.database.windows.net' 
+resource privateDnsZonesql 'Microsoft.Network/privateDnsZones@2020-06-01' existing = {
+  name: privateDnsZoneSQLName
   scope: resourceGroup(commonParams.dnsZoneSubscription,commonParams.dnsZoneResourceGroup)
 }
 
@@ -89,7 +88,7 @@ resource privateEndPoint 'Microsoft.Network/privateEndpoints@2022-09-01' = {
     subnet: {
       id: privateEndpointSubnet.id
     }
-    customNetworkInterfaceName: sqlServerPENicName
+    //customNetworkInterfaceName: sqlServerPENicName
     privateLinkServiceConnections: [
       {
         name: sqlServerPrivateEndPoint

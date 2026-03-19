@@ -9,13 +9,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  azureServiceConnection: 'azure-service-connection'
+  azureServiceConnection: 'ado-bcr'
 
 stages:
   - ${{ each env in split('dev,sit,uat,prod', ',') }}:
     - stage: ${{ env }}
       variables:
-        resourceGroup: 'rg-ae-bcrev-${{ env }}'
+        resourceGroup: 'rg-ae-bcr-${{ env }}'
       jobs:
         - deployment: Deploy
           environment: ${{ env }}

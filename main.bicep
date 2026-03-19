@@ -155,7 +155,7 @@ module sqlServer 'modules/sql_server.bicep' = {
     vnetResourceGroup: params.vnetResourceGroup
     subnetName: params.subnetName
     sqlServerPrivateEndPoint: params.sqlServerPrivateEndPoint
-    sqlServerPENicName: params.sqlServerPENicName
+    privateDnsZoneSQLName: params.privateDnsZoneSQLName
   }
 }
 

@@ -87,7 +87,7 @@ resource privateEndPoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
         properties: {
           privateLinkServiceId: containerRegistry.id
           groupIds: [
-            'registry'
+            'containerRegistry'
           ]
         }
       }

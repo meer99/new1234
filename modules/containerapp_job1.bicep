@@ -16,8 +16,7 @@ param containerAppsEnvironmentId string
 param managedIdentityId string
 
 //@description('Container image (e.g., mcr.microsoft.com/azuredocs/containerapps-helloworld:latest)')
-param containerImage string
-// = 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
+param containerImage string = 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
 
 var jobName = 'caj-ae-bcrevdata-accsync-${env}'
 var containerName = 'caj-ae-bcrevdata-accsync-${env}'

@@ -1,4 +1,4 @@
-﻿# Bicep Deployment Pipeline - dev → sit → uat → prod
+# Bicep Deployment Pipeline - dev → sit → uat → prod
 # Pipeline variables needed: sqlAdminLogin, sqlAdminPassword (secret)
 
 trigger:
@@ -31,8 +31,7 @@ stages:
                       scriptType: 'bash'
                       scriptLocation: 'inlineScript'
                       inlineScript: |
-                        az deployment group create \
-                          --name "deploy-ccss-$(Build.BuildNumber)" \
+                        az deployment group create \                         
                           --resource-group $(resourceGroup) \
                           --template-file main.bicep \
                           --parameters env=${{ env }} \
